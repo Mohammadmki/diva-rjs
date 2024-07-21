@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+  .navbar-text{
+    @apply  flex xl:text-xl px-[5px]  py-3 lg:text-lg md:text-xs flex-row-reverse  text-neutral-400 rounded-md  hover:text-black hover:bg-neutral-200 cursor-pointer   items-center transition-all duration-300 ease-in-out
+  }
+  .btn{
+    @apply  bg-divar md:w-fit md:text-xs lg:text-lg  md:px-[2px] md:py-2 text-center xl:px-4 py-[9px] rounded-md text-white
+  }
+  .input{
+    @apply transition-all px-1 duration-500 ease-in-out focus:border-divar focus:border-4 border-2 border-solid  border-neutral-200 rounded-md 
+  }
+}
+
 :root {
   font-family: "Vazir", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.5;
+
+}
+#root{
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -34,4 +51,5 @@ select {
 }
 input:focus{
   border: none;
+  
 }

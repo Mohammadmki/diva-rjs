@@ -7,7 +7,7 @@ function Authpage() {
     const[mobile,setMobile]=useState()
     const[code,setcode]=useState()
   return (
-    <div className='w-full h-full flex justify-center items-center backdrop-brightness-100 '>
+    <div style={{backdropFilter:" brightness(0.7)"}} className='w-full h-full flex justify-center items-center '>
        {step==1&&<SendOTP setstep={setstep} setMobile={setMobile} mobile={mobile}/>}
        {step==2&&<CheckOTP setstep={setstep} setcode={setcode} mobile={mobile} code={code}/>}
     </div>

@@ -21,7 +21,7 @@ function SendOTP({mobile,setMobile,setstep}) {
   }
   return (
     
-     <form className={show?'flex flex-col w-[450px] bg-white':'hidden'} onSubmit={submitHandeler}>
+     <form className={show?' flex flex-col md:w-[420px] bg-white px-1 py-2 lg:w-[500px]' :'hidden'} onSubmit={submitHandeler}>
       <div className='flex flex-row justify-between border-solid border-neutral-200  border-b-2 py-5 mb-6'>
         <h2 className='text-xl'>ورود به حساب کاربری</h2>
         <CloseIcon onClick={()=>setShow(false)}   className='cursor-pointer'/>

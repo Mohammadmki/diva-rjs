@@ -3,10 +3,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Flag, PhoneCallback } from '@mui/icons-material';
 import { checkOtp } from '../../servises/auth';
 import { setcookie } from '../../utils/cookie';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { profile } from '../../servises/getprofile';
+
 
 function CheckOTP({setstep,code,setcode,mobile}) {
   const [show,setShow]=useState(true)
 const input=useRef(null)
+const navigate=useNavigate()
+const{refetch}=useQuery({queryKey:["getprofile"],queryFn:profile})
 
   const submitHandeler=async(e)=>{
     e.preventDefault()
@@ -15,14 +21,17 @@ const input=useRef(null)
    input.current.className=' border-solid pr-3 h-9 rounded-md w-full border-red-600 border-2 placeholder:text-neutral-400 '
    
     }
-    const {res,error}= await checkOtp(mobile,code)
+    const {res}= await checkOtp(mobile,code)
     if(res){
       setcookie(res.data)
+      navigate("/")
+      setShow(false)
+      refetch()
     }
   }
  
   return (
-    <form onSubmit={submitHandeler} className={show?'flex flex-col py-3 px-2 w-[450px]':"hidden"} >
+    <form onSubmit={submitHandeler} className={show?'flex flex-col py-3 bg-white px-2 w-[450px]':"hidden"} >
       <div className='flex flex-row justify-between border-solid border-b-2 pb-7  border-neutral-200 mb-8'>
         <h2 className='text-xl'>ورود به حساب کاربری</h2>
         <CloseIcon onClick={()=>setShow(false)}  className='cursor-pointer'/>
