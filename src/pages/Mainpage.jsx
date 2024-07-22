@@ -1,3 +1,4 @@
+import Loader from "../components/Loader/Loader"
 
 
 
@@ -5,7 +6,10 @@ function Mainpage() {
 
   
   return (
-    <div>Mainpage</div>
+    <div className="w-full h-full">
+      <Loader/>
+      <p>54</p>
+    </div>
   )
 }
 

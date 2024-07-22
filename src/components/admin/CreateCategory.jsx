@@ -1,37 +1,35 @@
 
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { createcategory } from '../../features/Category/createCategorySlice'
 import toast, { Toaster } from 'react-hot-toast'
-import { Tornado } from '@mui/icons-material'
+import { useMutation } from '@tanstack/react-query'
+import { addCategory } from '../../servises/Category'
+
 
 function CreateCategory() {
 
     const[form,setForm]=useState({name:"",slog:"",icon:"",})
 
+     const {mutate,data,isLoading}=useMutation({mutationFn:addCategory})
 
     const formHandeler=(e)=>{
         setForm({...form,[e.target.name] : e.target.value})
     }
-  const createCategory=useSelector((store)=>store.createcategory)
+
   
 
 
-  const dispatch=useDispatch()
+
    const submitHandeler=(e)=>{
     e.preventDefault()
     if(!form.name||!form.icon||!form.slog) {
         toast.error("لطفا همه فرم را کامل کنید",{
-            duration:3500,
-        })
+            duration:3500, })
         return
     }
-    dispatch((createcategory(form)))
-    if(createCategory?.categorydata.status===201||createCategory?.categorydata.status===200){
-        toast.success("دسته بندی با موفقیت ایجاد شد")
+        mutate(form)
+        toast.success("دسته بندی ایجاد شد")
     }
     
-   }
 
 
   return (
@@ -44,7 +42,7 @@ function CreateCategory() {
         <input className='input mb-5 lg:min-w-96 min-h-8 min-w-64' type="text" name='slog' />
         <label className='font-medium lg:text-xl' htmlFor="icon">آیکون</label>
         <input className='input mb-5 lg:min-w-96 min-h-8 min-w-64' type="text" name='icon' />
-        <button className='btn text-base lg:text-lg px-3 py-1 disabled:opacity-50' disabled={createCategory.Loading} type='submit'>ایجاد</button>
+        <button className='btn text-base lg:text-lg px-3 py-1 disabled:opacity-50' disabled={isLoading} type='submit'>ایجاد</button>
     </form>
   )
 }
