@@ -13,32 +13,20 @@ const filterSlice=createSlice({
        Filterpost:(state,action)=>{
     
         if(!action.payload.search) return
-
+       console.log(action.payload) 
   const posts=action.payload.data?.data.posts
-
+const category=action.payload.category?.data  
+console.log(category)
     const post= posts.filter((i)=>i.options)
     
     state.post=post.filter((i)=>i.options.title.includes(action.payload.search));
-    
+    if(!state.post.length)return
+    console.log(state.post[0].category)
+    state.category=category.filter((i)=>i._id.includes(state.post[0].category))
        },
-       FilterCategory:(state,action)=>{
-        if(!state.post.length){
-            return
-        }else{
-            const category= action.payload.data;
-           
-               if(!state.post) return
-         for(let i=0;i<category.length;i++){
-           if(category[i]._id==state.post[0].category){
-               state.category=[category[i]]
-             }
-      }
-        }
-       
-}
-    }
     
-})
+    }
+    })
 
 export default filterSlice.reducer
-export const {Filterpost,FilterCategory} =filterSlice.actions
+export const {Filterpost} =filterSlice.actions

@@ -5,13 +5,13 @@ import { getCategory } from '../../servises/Category'
 import Loader from '../Loader/Loader'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useDispatch, useSelector } from 'react-redux'
-import { FilterCategory, Filterpost } from '../../features/Filter/filterSlice'
+import {  Filterpost } from '../../features/Filter/filterSlice'
 
 function SetCategory({setStep,setPost}) {
     const [search,setSearch]=useState()
     const [category,setcategory]=useState([])
    
-  
+    const {data,isLoading,error}=useQuery({queryKey:["getposts"],queryFn:getPosts})
       const {data:categories,isLoading:Loading}=useQuery({queryKey:["category"],queryFn:getCategory})
 
    
@@ -22,7 +22,7 @@ function SetCategory({setStep,setPost}) {
    
     const disptch=useDispatch()
 
-      const {data,isLoading,error}=useQuery({queryKey:["getposts"],queryFn:getPosts})
+
     
     
      

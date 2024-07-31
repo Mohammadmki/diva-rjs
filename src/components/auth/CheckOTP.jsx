@@ -5,7 +5,8 @@ import { checkOtp } from '../../servises/auth';
 import { setcookie } from '../../utils/cookie';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { profile } from '../../servises/getprofile';
+import { profile } from '../../servises/user';
+
 
 
 function CheckOTP({setstep,code,setcode,mobile}) {
