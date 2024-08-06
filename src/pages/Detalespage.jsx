@@ -25,6 +25,9 @@ function Detalespage() {
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const showHandler=(e)=>{
+    if(!data){
+      navigate("/auth")  
+    }
     connections.current.ariaDisabled=true
     e.target.disabled=true
   }
@@ -32,8 +35,6 @@ function Detalespage() {
   const savedHandler=(e)=>{
     if(!data){
       navigate("/auth")  
-    
-     
     }
     if(!savepost.posts.length){
       dispatch(savedpost(post.post))
@@ -43,7 +44,7 @@ function Detalespage() {
     if(savepost.posts[i]._id==post.post._id){
          
       dispatch(deletemarks(post.post._id))
-           toast.success("اگهی از نشان برداشته شد")
+           toast.success("اگهی از نشان ها برداشته شد")
     }else{
       
       dispatch(savedpost(post.post))
@@ -63,7 +64,7 @@ function Detalespage() {
         <div className='mt-4  flex justify-between items-center '>
           <div>
         <button disabled:false onClick={showHandler}  className='transition-all duration-300 ease-in-out btn px-4 disabled:bg-neutral-200 disabled:cursor-not-allowed disabled:text-neutral-400'>اطلاعات تماس</button>
-        <button className='btn bg-white text-neutral-500 border-2 px-12 py-2 rounded-md border-neutral-300 mr-4'>چت</button>
+        <button  className='btn bg-white text-neutral-500 border-2 px-12  py-2 rounded-md border-neutral-300 mr-4'>چت</button>
     
         </div>
         <div className='flex flex-row gap-2 '>

@@ -27,10 +27,10 @@ function Router() {
         <Route index element={<Mainpage/>} />
         <Route path='/admin' element={data&&data.data.role=="ADMIN" ? <AdminPage/>:<Navigate to={"/"} />}/>
         <Route path='/:id' element={<Detalespage/>}/>
-        <Route path='/my-posts' element={data?<Mypost/>:<Navigate to={"/auth"} />}/>
-        <Route path='/Book-Marks' element={data ?<BookMarks/>:<Navigate to={"/auth"} />}/>
-        <Route path='/new' element={data ?<CreatePosts/>:<Navigate to={"/auth"} />} />
-        <Route path='/auth' element={!data?<Authpage/>:<Navigate to={"/"} />}/>
+        <Route path='/my-posts' element={data?<Mypost/>:<Authpage/>}/>
+        <Route path='/Book-Marks' element={data ?<BookMarks/>:<Authpage />}/>
+        <Route path='/new' element={data ?<CreatePosts/>:<Authpage />} />
+       
         <Route path='*' element={<Notfoundpage/>} />
     </Routes>
   )
