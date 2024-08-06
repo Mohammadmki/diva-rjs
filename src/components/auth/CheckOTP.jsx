@@ -26,7 +26,7 @@ const{refetch}=useQuery({queryKey:["getprofile"],queryFn:profile})
     if(res){
       setcookie(res.data)
       navigate("/")
-      setShow(false)
+      setShow(true)
       refetch()
     }
   }
@@ -35,7 +35,7 @@ const{refetch}=useQuery({queryKey:["getprofile"],queryFn:profile})
     <form onSubmit={submitHandeler} className={show?'flex flex-col py-3 bg-white px-2 w-[450px]':"hidden"} >
       <div className='flex flex-row justify-between border-solid border-b-2 pb-7  border-neutral-200 mb-8'>
         <h2 className='text-xl'>ورود به حساب کاربری</h2>
-        <CloseIcon onClick={()=>setShow(false)}  className='cursor-pointer'/>
+        <CloseIcon onClick={()=>{setShow(false),navigate("/")}}  className='cursor-pointer'/>
       </div>
       <h4 className='text-lg font-semibold mb-7'>کد تایید را وارد نمایید</h4>
       <input className='transition-all   duration-500 ease-in-out border-solid pr-3 h-9 rounded-md w-full border-neutral-300 border-2 placeholder:text-neutral-400 hover:border-black focus:border-divar' value={code} onChange={(e)=>setcode(e.target.value)} ref={input} type="text" placeholder='کد تایید 5 رقمی' />

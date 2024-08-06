@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 const initialState={
     posts:[]
@@ -8,13 +9,16 @@ const savedSlice=createSlice({
     initialState,
     reducers:{
      savedpost:(state,action)=>{
+
         state.posts=[...state.posts,(action.payload)]
-        console.log(state.posts)
+        toast.success("اگهی نشان شد")
      },
      deletemarks:(state,action)=>{
-        console.log(action.payload)
+     
+        
         const newmarks=state.posts.filter((i)=>i._id!==action.payload)
         state.posts=newmarks
+      
      }
     }
 })

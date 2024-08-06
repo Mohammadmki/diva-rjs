@@ -14,20 +14,21 @@ function Mainpage() {
   
   const [display,setDisplay]=useState([])
 
+
   const {data:category,isLoading}=useQuery({queryKey:["category"],queryFn:getCategory})
   const {data:posts,isLoading:Loading,}=useQuery({queryKey:["getposts"],queryFn:getPosts})
 
 
   useEffect(()=>{
-    setDisplay(()=>[posts?.data])
+    setDisplay(posts?.data.posts)
   },[posts])
   
   return (
-    <div className="w-full h-full flex flex-row">
+    <div className="w-full h-full grid grid-cols-4">
       {isLoading||Loading ?<Loader/>:
       <>
-      <Sibebar category={category?.data}/>
-      <PostsSide display={display}  />
+      <Sibebar post={posts?.data.posts} setDisplay={setDisplay} category={category?.data}/>
+      <PostsSide  display={display}  />
       </>
       }
       

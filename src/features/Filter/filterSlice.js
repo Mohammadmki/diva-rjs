@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SetCategory from "../../components/createpost/SetCategory";
 
+
 const initialState={
-    post:[],
-    category:[]
+    posts:[],
 }
 
 const filterSlice=createSlice({
@@ -18,15 +18,24 @@ const filterSlice=createSlice({
 const category=action.payload.category?.data  
 console.log(category)
     const post= posts.filter((i)=>i.options)
-    
-    state.post=post.filter((i)=>i.options.title.includes(action.payload.search));
-    if(!state.post.length)return
-    console.log(state.post[0].category)
-    state.category=category.filter((i)=>i._id.includes(state.post[0].category))
+ 
+    state.posts=post.filter((i)=>i.options.title.includes(action.payload.search));
+    if(!state.posts.length)return
+    console.log(state.posts[0].category)
+    state.category=category.filter((i)=>i._id.includes(state.posts[0].category))
        },
-    
+
+    filterposts:(state,action)=>{
+        
+      
+       const category=action.payload.category._id
+       const post=action.payload.post
+       const filtercategory=post.filter((i)=>i.category==category)
+       state.posts=filtercategory
+        
+    }    
     }
     })
 
 export default filterSlice.reducer
-export const {Filterpost} =filterSlice.actions
+export const {Filterpost,filterposts} =filterSlice.actions

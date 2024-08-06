@@ -24,11 +24,15 @@ export default {
         '50%':{ transform: 'translateY(10px)'},
         '100%':{ transform: 'translateY(15px)',opacity:'100%'}
       },
-     
+     mark:{
+      '0%':{top:'0px', opacity:"0", },
+      '50%':{top:"-24px",opacity:"100%",display: 'block'},
+      '100%':{top:"0px",opacity:"0",display: 'none'}
+     }
      },
      animation:{
     navbar:'navbar 500ms ease-in-out forwards',
-   
+    mark:'mark 2100ms ease-in-out forwards',
      }
     },
   },

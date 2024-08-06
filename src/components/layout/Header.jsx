@@ -21,6 +21,8 @@ function Header() {
  const[show,setshow]=useState(false)
 const[search,setSearch]=useState('')
 
+
+
  const navigate=useNavigate()
 
  const {data:category,isLoading}=useQuery({queryKey:["category"],queryFn:getCategory})
@@ -46,8 +48,14 @@ return
  const changeHandler=(e)=>{
  setSearch(e.target.value)
  dispatch(Filterpost({search,data,category}))
+ }
+
+ const DeleteHandler=()=>{
+  document.cookie='refreshToken=;expires=Thu,01 Jan 1970 00:00:00 UTC; path=/;'
+  document.cookie='accessToken=; expires=Thu,01 Jan 1970 00:00:00 UTC; path=/;'
   
  }
+ 
   return (
 
     <header className='fixed top-0 m-0 pl-3 w-full bg-white  flex flex-row flex-wrap border-b-2 py-2 justify-between items-center border-neutral-300 border-solid '>
@@ -60,12 +68,12 @@ return
           
        <li className="navbar-text relative">
        تهران 
-         <LocationOnOutlinedIcon/>
+         <LocationOnOutlinedIcon  />
        </li>
    
        <li  onClick={clickHandler} className="group relative ">
         <p aria-disabled={false} className='group peer navbar-text'>
-        <i className='transition-all mr-3 duration-300 ease-in-out -rotate-90 group-aria-disabled:rotate-90'> <ArrowBackIosNewIcon style={{fontSize:"1rem "}}/></i>
+        <i className='transition-all mr-3 duration-300 ease-in-out -rotate-90 group-aria-disabled:rotate-90'> <ArrowBackIosNewIcon  style={{fontSize:"1rem "}}/></i>
          دسته ها
     
          </p>
@@ -78,7 +86,7 @@ return
                 {category.name}
                      <img className='w-4' src={`${category.icon}.svg`} alt="" />
                      </p>
-                    <ArrowBackIosNewIcon className='text-neutral-500' style={{fontSize:'0.9rem'}} />
+                    <ArrowBackIosNewIcon   style={{fontSize:'0.9rem'}} />
                 </li>
            ))}
            </>
@@ -95,35 +103,39 @@ return
        <li onClick={clickHandler} className="relative">
         <p  aria-disabled={false} className='peer navbar-text'  >
         دیوار من
-        <PersonOutlineOutlinedIcon />
+        <PersonOutlineOutlinedIcon  />
         </p>
         <ul className='menu '>
-          <li className='li flex-col'>
-            <p className='text-menu'>{user?.data.role=="USER"?"کاربر دیوار":"ادمین"}</p>
+         {user&& <li className='li flex-col'>
+           { user?.data.role=="ADMIN"&& <Link to={"/auth"} className='text-menu'>ادمین دیوار</Link>}
+           { user?.data.role=="USER"&& <p className='text-menu'>کاربر دیوار</p>}
             <span className='text-neutral-300 text-sm font-light mr-3 '>تلفن {e2p(user?.data.mobile)}</span>
           </li>
+}
           <li className='li  group'>
           <Link className='text-menu' to={"/my-posts"}>
           اگهی های من </Link>
           </li>
-          <li className='li  group border-none'>
+          <li className='li  group '>
             <Link className='text-menu' to={"/Book-Marks"}>
             نشان ها
             </Link>
           </li>
+          <li className='li border-none'>
+            <p onClick={DeleteHandler} className='text-menu'>خروج</p></li>
         </ul>
       </li>
        <li className='navbar-text'>
         چت
-         <ChatIcon />
+         <ChatIcon  />
        </li>
        <li className="navbar-text">
        پشتیبانی
-         <SupportIcon/>
+         <SupportIcon />
        </li>
-       <li className="navbar-text">
+       <li className="navbar-text" >
         fa
-        <PublicIcon/>
+        <PublicIcon />
        </li>
       <li>
       <button onClick={()=>navigate('/new')} className='btn'>
