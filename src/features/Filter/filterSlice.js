@@ -2,13 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import SetCategory from "../../components/createpost/SetCategory";
 
 
-const initialState={
-    posts:[],
-}
 
 const filterSlice=createSlice({
     name:"filterCategory",
-    initialState,
+    initialState:{},
     reducers:{
        Filterpost:(state,action)=>{
     
@@ -25,20 +22,11 @@ console.log(category)
     state.category=category.filter((i)=>i._id.includes(state.posts[0].category))
        },
 
-    filterposts:(state,action)=>{
-        
-     
-       
-       const post=action.payload.posts.data.posts
-      const category=action.payload.categoryFilter._id
-      
-      state.posts=post.filter((i)=>i.category==category)
-      
-      
-      
-    }    
+    filterbyCategory:(state,action)=>{
+        console.log(action)
+    }  
     }
     })
 
 export default filterSlice.reducer
-export const {Filterpost,filterposts} =filterSlice.actions
+export const {Filterpost,filterbyCategory} =filterSlice.actions

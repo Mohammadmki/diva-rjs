@@ -1,21 +1,21 @@
 import React from 'react'
 import { sp } from '../../utils/number'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getpost } from '../../features/post/detalesSlice'
 
 
 
-function PostsSide({display}) {
+function PostsSide() {
 
 
-  const post=display.filter((i)=>i.options)
-
+  const post=useSelector((store)=>store.posts)
+  
 
   const disptch=useDispatch()
   return (
         <div className='md:col-span-3 lg:col-span-5  flex flex-row flex-wrap gap-x-2 justify-center  overflow-hidden'>
-      {post?.map((post)=>(
+      {post?.posts.map((post)=>(
         <Link to={`/${post._id}`} onClick={()=>disptch(getpost(post))} key={post._id} className='flex rounded-md  flex-row-reverse justify-between p-2  my-2 w-[210px] md:w-[320px] lg:w-[390px] md:h-44 lg:h-56 border-solid border-2 border-neutral-300'>
         <img className='w-[80px] h-full md:w-[146px] lg:w-[200px] rounded-md  mr-3' src={`${import.meta.env.VITE_BASE_URL}/${post.images[0]}`} alt="" />
         <div className='flex  flex-col overflow-hidden justify-between '>

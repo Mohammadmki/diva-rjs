@@ -10,9 +10,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getCategory } from '../../servises/Category';
 import Loader from '../Loader/Loader';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { getPosts } from '../../servises/getposts';
-import {  Filterpost } from '../../features/Filter/filterSlice';
+import {  filterbyCategory, Filterpost } from '../../features/Filter/filterSlice';
 import { profile } from '../../servises/user';
 import { e2p } from '../../utils/number';
 
@@ -82,7 +82,7 @@ console.log(e.target.ariaValueText)
                 {isLoading? <Loader/>:
                 <>
                 {category?.data.map((category)=>(
-                <li key={category._id} className='li border-none justify-between transition-none'>
+                <li onClick={()=>{setShowcategory(false),dispatch(filterbyCategory({category}))}} key={category._id} className='li border-none justify-between transition-none'>
                   <p className='text-menu'>
                 {category.name}
                      <img className='w-4' src={`${category.icon}.svg`} alt="" />

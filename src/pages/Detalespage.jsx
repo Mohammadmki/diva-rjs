@@ -38,7 +38,7 @@ function Detalespage() {
 
 
 
-console.log(savedposts)
+ 
 
 
   const savedHandler=()=>{
