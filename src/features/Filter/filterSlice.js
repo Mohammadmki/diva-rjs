@@ -27,12 +27,15 @@ console.log(category)
 
     filterposts:(state,action)=>{
         
+     
+       
+       const post=action.payload.posts.data.posts
+      const category=action.payload.categoryFilter._id
       
-       const category=action.payload.category._id
-       const post=action.payload.post
-       const filtercategory=post.filter((i)=>i.category==category)
-       state.posts=filtercategory
-        
+      state.posts=post.filter((i)=>i.category==category)
+      
+      
+      
     }    
     }
     })

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -12,32 +12,43 @@ import { profile } from '../servises/user';
 import Authpage from './Authpage';
 import {  useNavigate } from 'react-router-dom';
 
+
 function Detalespage() {
-    const [show,setshow]=useState(false)
-  const mark=useRef(null)
+   
+    const[showAuth,setShowAuth]=useState(false)
   const connections=useRef(null)
   const post=useSelector((store)=>store.detale)
    const savepost=useSelector((store)=>store.saved)
    
+   const savedposts=useSelector((store)=>store.saved)
    const{data,isLoading,error}=useQuery({queryKey:["getprofile"],queryFn:profile})
 
-  
   const navigate=useNavigate()
   const dispatch=useDispatch()
+
   const showHandler=(e)=>{
     if(!data){
-      navigate("/auth")  
+      setShowAuth(true)
+      return  
     }
+
     connections.current.ariaDisabled=true
     e.target.disabled=true
   }
 
-  const savedHandler=(e)=>{
+
+
+console.log(savedposts)
+
+
+  const savedHandler=()=>{
     if(!data){
-      navigate("/auth")  
+      setShowAuth(true)
+      return 
     }
     if(!savepost.posts.length){
       dispatch(savedpost(post.post))
+       
     }
    for(let i=0;i<savepost.posts.length;i++){
 
@@ -45,17 +56,20 @@ function Detalespage() {
          
       dispatch(deletemarks(post.post._id))
            toast.success("اگهی از نشان ها برداشته شد")
+           
     }else{
       
       dispatch(savedpost(post.post))
-    
+     
     }
 
    }
   
   }
+
   return (
-    <div className='grid grid-cols-2 gap-x-8 mt-32'>
+    <div  className='grid grid-cols-2  gap-x-8  px-5'>
+      {showAuth&&<Authpage setShowAuth={setShowAuth}/>}
       <div >
         <Toaster/>
         <h1 className='md:text-2xl lg:text-3xl xl:text-4xl '>{post?.post.options.title}</h1>
@@ -68,9 +82,9 @@ function Detalespage() {
     
         </div>
         <div className='flex flex-row gap-2 '>
-        <i className='transition-all duration-300 ease-in-out bg-white hover:bg-neutral-200  p-1 rounded-full '> <ShareOutlinedIcon  style={{fontSize:"1.3rem",color:"rgb(115,115,115)"}}/></i> 
-        <i   onClick={savedHandler} className='transition-all cursor-pointer  duration-300 ease-in-out text-neutral-500 bg-white hover:bg-neutral-200  p-1 rounded-full'><BookmarkBorderOutlinedIcon   style={{fontSize:"1.3rem"}}/></i> 
-       
+        <i className='transition-all duration-300 ease-in-out  hover:bg-neutral-200  p-1 rounded-full '> <ShareOutlinedIcon  style={{fontSize:"1.3rem",color:"rgb(115,115,115)"}}/></i> 
+    <i className='transition-all text-neutral-500  duration-300 ease-in-out   hover:bg-neutral-200  p-1 rounded-full' onClick={savedHandler}><BookmarkBorderOutlinedIcon/></i>
+    
         </div>
         </div>
         <div aria-disabled:false ref={connections} className='transition-all  duration-300 ease-in-out py-2 h-0 aria-disabled:h-28   overflow-hidden' >
@@ -95,7 +109,7 @@ function Detalespage() {
       </div>
       <div>
     <img className='w-full h-[450px] ' src={`${import.meta.env.VITE_BASE_URL}${post?.post.images}`} alt="" />
-     <input className='input mt-3 w-full min-h-32  ' type="text" placeholder='یادداشت شما...' />
+     <input className='input mt-3 w-full min-h-32 bg-transparent  ' type="text" placeholder='یادداشت شما...' />
     <span className='text-sm text-neutral-400'>یادداشت تنها برای شما قابل دیدن است و پس از حذف آگهی، پاک خواهد شد.</span>
      </div>
     </div>

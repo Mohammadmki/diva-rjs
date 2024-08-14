@@ -10,10 +10,10 @@
     @apply  bg-divar md:w-fit md:text-base text-sm lg:text-lg  px-[2px] md:py-2 text-center xl:px-4 py-[9px] rounded-md text-white
   }
   .input{
-    @apply transition-all px-1 duration-500 ease-in-out focus:border-divar focus:border-4 border-2 border-solid  border-neutral-200 rounded-md 
+    @apply transition-all bg-transparent px-1 duration-500 ease-in-out focus:border-divar focus:border-4 border-2 border-solid  border-neutral-200 rounded-md 
   }
   .menu{
-    @apply h-fit hidden w-[205px]   rounded-md pb-1  bg-white  peer-aria-disabled:flex peer-aria-disabled:animate-navbar flex-col items-start duration-500 ease-in-out top-10 drop-shadow-2xl shadow-black opacity-100 absolute
+    @apply h-fit transition-transform duration-300 ease-in-out w-[205px] hidden -translate-y-10 rounded-md pb-1 opacity-0  bg-white  aria-disabled:flex aria-disabled:opacity-100  aria-disabled:translate-y-[10px] flex-col items-start   drop-shadow-2xl shadow-black  absolute
   }
   .li{
     @apply  w-full transition-all  px-1 duration-300  ease-in-out pb-3 rounded-md flex  cursor-pointer hover:bg-neutral-100 pt-2 border-solid border-b-[1px]  border-neutral-300
@@ -38,7 +38,7 @@ body {
   margin: auto;
   max-width: 1400px;
   min-height: 100vh;
-  padding: 10px;
+ 
   
 }
 

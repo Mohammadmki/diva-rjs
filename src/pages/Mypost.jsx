@@ -11,10 +11,10 @@ function Mypost() {
   console.log(data)
 
   return (
-    <div className='mt-16 w-full h-full container mx-auto'> 
+    <div className='mt-16 px-5 w-full h-full container mx-auto'> 
   
       {data?.data.posts.map(post=>(
-     <div className='flex flex-row  w-[800px] border-b-[1px] pb-4 border-solid border-neutral-300'>
+     <div className='flex flex-row py-4  w-[800px] border-b-[1px]  border-solid border-neutral-300'>
 
       <div className='flex flex-row w-full gap-x-5'  >
         <img className='w-32 h-28 rounded-md' src={`${import.meta.env.VITE_BASE_URL}${post.images}`} alt="" />

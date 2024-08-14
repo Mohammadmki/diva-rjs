@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function Notfoundpage() {
   return (
-    <div className="w-full flex items-center flex-col">
+    <div className="w-full px-5 flex items-center flex-col">
       <h3 className="text-7xl text-neutral-400 font-semibold">404</h3>
       <h2 className="text-2xl text-neutral-400">این راه به جایی نمیرسد!</h2>
        <p className="text-neutral-400">

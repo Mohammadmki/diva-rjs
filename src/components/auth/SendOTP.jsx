@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { sentOtp } from '../../servises/auth';
 import { useNavigate } from 'react-router-dom';
 
-function SendOTP({mobile,setMobile,setstep}) {
+function SendOTP({mobile,setMobile,setstep,setShowAuth}) {
   const input=useRef(null)
   const [show,setShow]=useState(true)
   const navigate=useNavigate()
@@ -23,10 +23,10 @@ function SendOTP({mobile,setMobile,setstep}) {
   }
   return (
     
-     <form className={show?' flex flex-col md:w-[420px] bg-white px-1 py-2 lg:w-[500px]' :'hidden'} onSubmit={submitHandeler}>
+     <form className={show?' flex flex-col  md:w-[420px] bg-white px-1 py-4 lg:w-[500px]' :'hidden'} onSubmit={submitHandeler}>
       <div className='flex flex-row justify-between border-solid border-neutral-200  border-b-2 py-5 mb-6'>
         <h2 className='text-xl'>ورود به حساب کاربری</h2>
-        <CloseIcon onClick={()=>{setShow(false),navigate("/")}}   className='cursor-pointer'/>
+        <CloseIcon onClick={()=>{setShow(false),setShowAuth(false)}}   className='cursor-pointer'/>
       </div>
       <div className='border-neutral-200 mb-4 pb-3 border-b-2 border-solid'>
       <h4 className='text-lg font-semibold mb-6'>شماره موبایل خود را وارد کنید</h4>

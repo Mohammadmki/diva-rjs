@@ -5,7 +5,7 @@ import CreateCategory from "../components/admin/CreateCategory"
 function AdminPage() {
 
   return (
-    <div>
+    <div  className=" px-5">
       <CreateCategory/>
       <Categorys />
     </div>

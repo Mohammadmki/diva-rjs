@@ -11,7 +11,7 @@ function BookMarks() {
   const dispatch=useDispatch()
 console.log(posts.posts)
   return (
-    <div className='mt-16 flex flex-row flex-wrap'>
+    <div className='px-5 flex flex-row flex-wrap'>
      {posts.posts.map((post)=>(
       <div className='border-neutral-200 rounded-md lg:w-[450px]  px-2 py-3 border-2 w-[350px] grid gap-y-4 gap-x-2 grid-cols-2 grid-rows-5' >
           <div className='row-span-4 flex flex-col justify-between'>

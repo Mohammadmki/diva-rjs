@@ -10,7 +10,7 @@ function CreatePosts() {
   )
 console.log(post)
   return (
-    <div>
+    <div className="px-5">
         { step==1 && <  SetCategory setPost={setPost} setStep={setStep} />}
         {step==2 && <SetDiscreption setStep={setStep} post={post} setPost={setPost} />}
     </div>

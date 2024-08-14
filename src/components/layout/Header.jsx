@@ -17,8 +17,8 @@ import { profile } from '../../servises/user';
 import { e2p } from '../../utils/number';
 
 
-function Header() {
- const[show,setshow]=useState(false)
+function Header({showcategory,setShowcategory,showPages,setshowPages,setShowAuth}) {
+
 const[search,setSearch]=useState('')
 
 
@@ -27,23 +27,12 @@ const[search,setSearch]=useState('')
 
  const {data:category,isLoading}=useQuery({queryKey:["category"],queryFn:getCategory})
  const {data,isLoading:Loading,}=useQuery({queryKey:["getposts"],queryFn:getPosts})
- const{data:user,isLoading:load}=useQuery({queryKey:["getprofile"],queryFn:profile})
+ const{data:user,isLoading:load,refetch}=useQuery({queryKey:["getprofile"],queryFn:profile})
 
- const filter=useSelector((store)=>store.filter)
+ 
 const dispatch=useDispatch()
 
- const clickHandler=(event)=>{
- if(show==true){
-  setshow(false)
- event.target.ariaDisabled=show
- }
- if(show===false){
-  setshow(true)
-event.target.ariaDisabled=show
-return
- }
- return event.target.ariaDisabled=show
- }
+
 
  const changeHandler=(e)=>{
  setSearch(e.target.value)
@@ -53,12 +42,24 @@ return
  const DeleteHandler=()=>{
   document.cookie='refreshToken=;expires=Thu,01 Jan 1970 00:00:00 UTC; path=/;'
   document.cookie='accessToken=; expires=Thu,01 Jan 1970 00:00:00 UTC; path=/;'
-  
+  refetch()
+  navigate("/")
  }
  
-  return (
+ const pageHandler=(e)=>{
+  if(!user){
+    setShowAuth(true)
+    return
+  }
+ navigate(e.target.ariaValueText)
+console.log(e.target.ariaValueText) 
 
-    <header className='fixed top-0 m-0 pl-3 w-full bg-white  flex flex-row flex-wrap border-b-2 py-2 justify-between items-center border-neutral-300 border-solid '>
+ }
+
+  return (
+   
+    <header  className='fixed z-50 h-fit top-0 m-0 pl-3 w-full bg-white  flex flex-row flex-wrap border-b-2 py-2 justify-between items-center border-neutral-300 border-solid '>
+    
       <ul className='flex w-full justify-around'>
         <li>
         <Link to={"/"}>
@@ -71,13 +72,13 @@ return
          <LocationOnOutlinedIcon  />
        </li>
    
-       <li  onClick={clickHandler} className="group relative ">
-        <p aria-disabled={false} className='group peer navbar-text'>
+       <li onClick={()=>showcategory?setShowcategory(false):setShowcategory(true)}  className="group relative ">
+        <p aria-disabled={showcategory} className='group peer navbar-text'>
         <i className='transition-all mr-3 duration-300 ease-in-out -rotate-90 group-aria-disabled:rotate-90'> <ArrowBackIosNewIcon  style={{fontSize:"1rem "}}/></i>
          دسته ها
     
          </p>
-          <ul className='menu' >
+          <ul aria-disabled={showcategory} className='menu' >
                 {isLoading? <Loader/>:
                 <>
                 {category?.data.map((category)=>(
@@ -100,29 +101,31 @@ return
         <div  className='transition-all hidden peer-focus:block opacity-0 duration-500 ease-in-out drop-shadow-xl translate-y-[-40px]  peer-focus:animate-navbar  bg-white min-h-32 w-full absolute'></div>
         </div>
         
-       <li onClick={clickHandler} className="relative">
-        <p  aria-disabled={false} className='peer navbar-text'  >
+       <li id='menu'  className="relative">
+        <p onClick={()=>showPages? setshowPages(false):setshowPages(true)}   className='peer navbar-text'  >
         دیوار من
         <PersonOutlineOutlinedIcon  />
         </p>
-        <ul className='menu '>
+        <ul aria-disabled={showPages}  className='menu '>
          {user&& <li className='li flex-col'>
-           { user?.data.role=="ADMIN"&& <Link to={"/auth"} className='text-menu'>ادمین دیوار</Link>}
+           { user?.data.role=="ADMIN"&& <Link to={"/admin"} className='text-menu'>ادمین دیوار</Link>}
            { user?.data.role=="USER"&& <p className='text-menu'>کاربر دیوار</p>}
             <span className='text-neutral-300 text-sm font-light mr-3 '>تلفن {e2p(user?.data.mobile)}</span>
           </li>
 }
           <li className='li  group'>
-          <Link className='text-menu' to={"/my-posts"}>
-          اگهی های من </Link>
+          <p className='text-menu w-full h-full' aria-valuetext='/my-posts' onClick={pageHandler} >
+          اگهی های من </p>
           </li>
           <li className='li  group '>
-            <Link className='text-menu' to={"/Book-Marks"}>
+            <p className='text-menu w-full h-full' aria-valuetext='/Book-Marks' onClick={pageHandler}>
             نشان ها
-            </Link>
+            </p>
           </li>
           <li className='li border-none'>
-            <p onClick={DeleteHandler} className='text-menu'>خروج</p></li>
+            {!user&&<p onClick={()=>setShowAuth(true)}>ورود</p>}
+          {user&&<p onClick={DeleteHandler} className='text-menu'>خروج</p>}
+            </li>
         </ul>
       </li>
        <li className='navbar-text'>
@@ -138,12 +141,13 @@ return
         <PublicIcon />
        </li>
       <li>
-      <button onClick={()=>navigate('/new')} className='btn'>
+      <button onClick={()=>{!data?navigate("/new"):setShowAuth(true)}} className='btn'>
         ثبت اگهی
       </button>
       </li>
       </ul>
     </header>
+    
   )
 }
 
