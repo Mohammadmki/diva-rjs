@@ -1,7 +1,7 @@
 
 import { useQuery } from "@tanstack/react-query"
 import Loader from "../components/Loader/Loader"
-import Sibebar from "../components/main/sibebar"
+
 import { getCategory } from "../servises/Category"
 import { getPosts } from "../servises/getposts"
 import { useEffect, useState } from "react"
@@ -9,6 +9,7 @@ import PostsSide from "../components/main/PostsSide"
 import { useDispatch, useSelector } from "react-redux"
 import { filterbyCategory } from "../features/Filter/filterSlice"
 import { getpost } from "../features/post/allPostSlice"
+import Sibebar from "../components/main/Sibebar"
 
 
 
