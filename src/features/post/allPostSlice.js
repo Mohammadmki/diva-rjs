@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { filterbyCategory } from "../Filter/filterSlice";
+import { filterbyCategory, FilterbySearch } from "../Filter/filterSlice";
 
 const initialState={
     posts:[],
@@ -13,11 +13,12 @@ const allpostSlice=createSlice({
         builder.addCase(filterbyCategory,(state,action)=>{
             console.log(action.payload)
             const category=action.payload.category._id
-          
+
          const newpost=state.allpost.filter((p)=>p.category==category)
            console.log(newpost)
           state.posts=newpost
         })
+       
     },
       
     

@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import { FiShare2 } from "react-icons/fi";
+import { FaRegBookmark } from "react-icons/fa";
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { deletemarks, savedpost } from '../features/post/savedSlice';
 import toast, { Toaster } from 'react-hot-toast';
@@ -82,8 +82,8 @@ function Detalespage() {
     
         </div>
         <div className='flex flex-row gap-2 '>
-        <i className='transition-all duration-300 ease-in-out  hover:bg-neutral-200  p-1 rounded-full '> <ShareOutlinedIcon  style={{fontSize:"1.3rem",color:"rgb(115,115,115)"}}/></i> 
-    <i className='transition-all text-neutral-500  duration-300 ease-in-out   hover:bg-neutral-200  p-1 rounded-full' onClick={savedHandler}><BookmarkBorderOutlinedIcon/></i>
+        <i className='transition-all duration-300 ease-in-out text-neutral-500 hover:bg-neutral-200  p-1 rounded-full '> <FiShare2 className='navbaricons'/></i> 
+    <i className='transition-all text-neutral-500  duration-300 ease-in-out   hover:bg-neutral-200  p-1 rounded-full' onClick={savedHandler}><FaRegBookmark  className='navbaricons' /></i>
     
         </div>
         </div>

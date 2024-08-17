@@ -1,50 +1,41 @@
 import { useQuery } from '@tanstack/react-query'
-import React, { useEffect, useState } from 'react'
-import { getPosts } from '../../servises/getposts'
+import React, {  useState } from 'react'
 import { getCategory } from '../../servises/Category'
 import Loader from '../Loader/Loader'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useDispatch, useSelector } from 'react-redux'
-import {  Filterpost } from '../../features/Filter/filterSlice'
+import {  FilterbySearch } from '../../features/Filter/filterSlice'
 
 function SetCategory({setStep,setPost}) {
-    const [search,setSearch]=useState()
-    const [category,setcategory]=useState([])
    
-    const {data,isLoading,error}=useQuery({queryKey:["getposts"],queryFn:getPosts})
+    const [category,setcategory]=useState([])
+    const[search,setsearch]=useState()
+    
       const {data:categories,isLoading:Loading}=useQuery({queryKey:["category"],queryFn:getCategory})
 
    
-    console.log(category)
+
 
    
-    const Filter=useSelector((store)=>store.filter)
-   
+    const post=useSelector((store)=>store.posts)
+
     const disptch=useDispatch()
 
 
-    
-    
-     
-       
-     
-
       const searchHandler=(e)=>{
+        setsearch(e.target.value.toLowerCase())
+        if(!search) return
+   const searchedpost=post.allpost.filter((i)=>i.options.title.includes(search))
+      if(searchedpost.length){
+        console.log(searchedpost)
+        for(let i=0;i<categories.data.length;i++){
+          if(categories.data[i]._id==searchedpost[0].category){
+        setcategory(categories.data[i])
+          }
+      }
 
-          setSearch(e.target.value.toLowerCase())
-
-          disptch(Filterpost({data,search}))
-         
-               if(!Filter.post.length){
-                setcategory([])
-                return
-              }
-          for(let i=0;i<categories.data.length;i++){
-            if(categories.data[i]._id==Filter.post[0].category){
-              setcategory(()=>[categories.data[i]])
-              }
-            }
-            console.log(category)  
+       }
+            
             }
 
            
@@ -54,8 +45,8 @@ function SetCategory({setStep,setPost}) {
     <div className='w-[500px] container mx-auto my-5'>
         <h2 className='text-xl font-light' >ثبت اگهی</h2>
         <p className='text-sm text-neutral-400 mt-3'>انتخاب دسته بندی</p>
-        <input value={search} onChange={searchHandler}  className='input rounded-none w-full h-9 mb-10 mt-6 placeholder:text-neutral-400 placeholder:font-extralight ' type="text" placeholder='جست و جو در دسته ها' />
-         {Loading||isLoading ?<Loader/>:
+        <input  onChange={searchHandler}  className='input rounded-none w-full h-9 mb-10 mt-6 placeholder:text-neutral-400 placeholder:font-extralight ' type="text" placeholder='جست و جو در دسته ها' />
+         {Loading ?<Loader/>:
         <>
           {!!category.length ?
           <ul>

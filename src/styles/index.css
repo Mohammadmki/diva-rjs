@@ -3,14 +3,18 @@
 @tailwind utilities;
 
 @layer components{
+  .navbaricons{
+    @apply text-sm md:text-xl lg:text-2xl xl:text-3xl 
+  }
+
   .navbar-text{
-    @apply  flex  xl:text-2xl px-[5px]  py-3 lg:text-[20px]  text-[0.25rem] md:text-base flex-row-reverse  text-neutral-400 rounded-md  hover:text-black hover:bg-neutral-200 cursor-pointer   items-center transition-all duration-300 ease-in-out
+    @apply  flex  xl:text-2xl px-[5px]  py-3 lg:text-[20px]  text-[.50rem] md:text-base flex-row-reverse  text-neutral-400 rounded-md  hover:text-black hover:bg-neutral-200 cursor-pointer   items-center transition-all duration-300 ease-in-out
   }
   .btn{
-    @apply  bg-divar md:w-fit md:text-base text-sm lg:text-lg  px-[2px] md:py-2 text-center xl:px-4 py-[9px] rounded-md text-white
+    @apply  bg-divar  md:w-fit md:text-xs text-[0.50rem] lg:text-lg  px-[2px] md:py-2 text-center xl:px-4 py-[6px] rounded-md text-white
   }
   .input{
-    @apply transition-all bg-transparent px-1 duration-500 ease-in-out focus:border-divar focus:border-4 border-2 border-solid  border-neutral-200 rounded-md 
+    @apply transition-all bg-transparent px-1  duration-500 ease-in-out focus:border-divar focus:border-4 border-2 border-solid  border-neutral-200 rounded-md 
   }
   .menu{
     @apply h-fit transition-transform duration-300 ease-in-out w-[205px] hidden -translate-y-10 rounded-md pb-1 opacity-0  bg-white  aria-disabled:flex aria-disabled:opacity-100  aria-disabled:translate-y-[10px] flex-col items-start   drop-shadow-2xl shadow-black  absolute

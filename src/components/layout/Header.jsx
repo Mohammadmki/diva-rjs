@@ -1,25 +1,25 @@
 import React, { useState } from 'react'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import SearchIcon from '@mui/icons-material/Search';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import ChatIcon from '@mui/icons-material/Chat';
-import SupportIcon from '@mui/icons-material/Support';
-import PublicIcon from '@mui/icons-material/Public';
+import { IoIosArrowBack } from "react-icons/io";
+import { MdOutlineLocationOn } from "react-icons/md";
+import { IoMdSearch } from "react-icons/io";
+import { FaRegUser } from "react-icons/fa";
+import { IoChatbubbleOutline } from "react-icons/io5";
+import { MdOutlineSupport } from "react-icons/md";
+import { BiWorld } from "react-icons/bi";
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getCategory } from '../../servises/Category';
 import Loader from '../Loader/Loader';
 import { useDispatch} from 'react-redux';
 import { getPosts } from '../../servises/getposts';
-import {  filterbyCategory, Filterpost } from '../../features/Filter/filterSlice';
+import {  filterbyCategory, FilterbySearch } from '../../features/Filter/filterSlice';
 import { profile } from '../../servises/user';
 import { e2p } from '../../utils/number';
 
 
 function Header({showcategory,setShowcategory,showPages,setshowPages,setShowAuth}) {
 
-const[search,setSearch]=useState('')
+
 
 
 
@@ -35,8 +35,8 @@ const dispatch=useDispatch()
 
 
  const changeHandler=(e)=>{
- setSearch(e.target.value)
- dispatch(Filterpost({search,data,category}))
+ dispatch(FilterbySearch(e.target.value))
+
  }
 
  const DeleteHandler=()=>{
@@ -52,7 +52,7 @@ const dispatch=useDispatch()
     return
   }
  navigate(e.target.ariaValueText)
-console.log(e.target.ariaValueText) 
+
 
  }
 
@@ -60,7 +60,7 @@ console.log(e.target.ariaValueText)
    
     <header  className='fixed z-50 h-fit top-0 m-0 pl-3 w-full bg-white  flex flex-row flex-wrap border-b-2 py-2 justify-between items-center border-neutral-300 border-solid '>
     
-      <ul className='flex w-full justify-around'>
+      <ul className='flex w-full items-center justify-around'>
         <li>
         <Link to={"/"}>
         <img src="../../../public/divar.svg" className='xl:w-16 lg:w-16 w-12 cursor-pointer border-neutral-300 border-l-2 border-solid pl-3' alt="" />
@@ -69,12 +69,12 @@ console.log(e.target.ariaValueText)
           
        <li className="navbar-text relative">
        تهران 
-         <LocationOnOutlinedIcon  />
+         <MdOutlineLocationOn className='navbaricons' />
        </li>
    
        <li onClick={()=>showcategory?setShowcategory(false):setShowcategory(true)}  className="group relative ">
         <p aria-disabled={showcategory} className='group peer navbar-text'>
-        <i className='transition-all mr-3 duration-300 ease-in-out -rotate-90 group-aria-disabled:rotate-90'> <ArrowBackIosNewIcon  style={{fontSize:"1rem "}}/></i>
+        <i className='transition-all mr-3 duration-300 ease-in-out -rotate-90 group-aria-disabled:rotate-90'> <IoIosArrowBack className='navbaricons' /></i>
          دسته ها
     
          </p>
@@ -87,7 +87,7 @@ console.log(e.target.ariaValueText)
                 {category.name}
                      <img className='w-4' src={`${category.icon}.svg`} alt="" />
                      </p>
-                    <ArrowBackIosNewIcon   style={{fontSize:'0.9rem'}} />
+                     <IoIosArrowBack className='navbaricons' />
                 </li>
            ))}
            </>
@@ -95,16 +95,16 @@ console.log(e.target.ariaValueText)
               
           </ul>
           </li>
-          <div className='relative'>
-        <input value={search} onChange={changeHandler} type="text" className='peer bg-neutral-200 md:w-56 md:h-10 lg:h-12 lg:w-72  h-full w-full rounded-md placeholder:text-neutral-400 placeholder:font-semibold md:placeholder:text-base md:placeholder:font-extralight  px-1 '  placeholder='جستجو در تمام اگهی ها' />
-        <SearchIcon  className='transition-all ease-in-out  duration-500 text-neutral-400  peer-hover:text-neutral-600 absolute top-0 left-0 m-2 '/>
+          <div className='relative '>
+        <input  onChange={changeHandler} type="text" className='peer bg-neutral-200 md:w-56 md:h-10 lg:h-12 lg:w-72 w-40 placeholder:text-[0.50rem] rounded-md placeholder:text-neutral-400 placeholder:font-semibold md:placeholder:text-base md:placeholder:font-extralight  px-1 '  placeholder='جستجو در تمام اگهی ها' />
+        <IoMdSearch  className='transition-all ease-in-out  duration-500 text-neutral-400  peer-hover:text-neutral-600 absolute top-0 left-0 mt-1 md:m-2 navbaricons'/>
         <div  className='transition-all hidden peer-focus:block opacity-0 duration-500 ease-in-out drop-shadow-xl translate-y-[-40px]  peer-focus:animate-navbar  bg-white min-h-32 w-full absolute'></div>
         </div>
         
        <li id='menu'  className="relative">
         <p onClick={()=>showPages? setshowPages(false):setshowPages(true)}   className='peer navbar-text'  >
         دیوار من
-        <PersonOutlineOutlinedIcon  />
+        <FaRegUser className='navbaricons' />
         </p>
         <ul aria-disabled={showPages}  className='menu '>
          {user&& <li className='li flex-col'>
@@ -130,18 +130,18 @@ console.log(e.target.ariaValueText)
       </li>
        <li className='navbar-text'>
         چت
-         <ChatIcon  />
+         <IoChatbubbleOutline className='navbaricons' />
        </li>
        <li className="navbar-text">
        پشتیبانی
-         <SupportIcon />
+         <MdOutlineSupport className='navbaricons' />
        </li>
        <li className="navbar-text" >
         fa
-        <PublicIcon />
+        <BiWorld className='navbaricons' />
        </li>
       <li>
-      <button onClick={()=>{!data?navigate("/new"):setShowAuth(true)}} className='btn'>
+      <button onClick={()=>{user?navigate("/new"):setShowAuth(true)}} className='btn'>
         ثبت اگهی
       </button>
       </li>

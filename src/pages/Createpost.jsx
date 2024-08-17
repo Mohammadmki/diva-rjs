@@ -6,9 +6,8 @@ import SetDiscreption from "../components/createpost/SetDiscreption"
 
 function CreatePosts() {
   const [post,setPost]=useState({category:"",city:"",amount:null,images:null,content:"",title:""})
-  const [step,setStep]=useState(1
-  )
-console.log(post)
+  const [step,setStep]=useState(1)
+
   return (
     <div className="px-5">
         { step==1 && <  SetCategory setPost={setPost} setStep={setStep} />}

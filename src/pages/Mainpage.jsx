@@ -1,7 +1,6 @@
 
 import { useQuery } from "@tanstack/react-query"
 import Loader from "../components/Loader/Loader"
-
 import { getCategory } from "../servises/Category"
 import { getPosts } from "../servises/getposts"
 import { useEffect, useState } from "react"
@@ -24,7 +23,7 @@ function Mainpage() {
  
   const dispatch=useDispatch()
 
-  const post=useSelector((store)=>store.filter)
+
  
 
   useEffect(()=>{
