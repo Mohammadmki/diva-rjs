@@ -9,7 +9,7 @@ function CreatePosts() {
   const [step,setStep]=useState(1)
 
   return (
-    <div className="px-5">
+    <div className="px-2 pt-2 md:pt4 md:px-5">
         { step==1 && <  SetCategory setPost={setPost} setStep={setStep} />}
         {step==2 && <SetDiscreption setStep={setStep} post={post} setPost={setPost} />}
     </div>

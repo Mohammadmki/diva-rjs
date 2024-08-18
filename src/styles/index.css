@@ -4,26 +4,26 @@
 
 @layer components{
   .navbaricons{
-    @apply text-sm md:text-xl lg:text-2xl xl:text-3xl 
+    @apply text-[0.50rem] md:text-xl lg:text-2xl xl:text-3xl 
   }
 
   .navbar-text{
-    @apply  flex  xl:text-2xl px-[5px]  py-3 lg:text-[20px]  text-[.50rem] md:text-base flex-row-reverse  text-neutral-400 rounded-md  hover:text-black hover:bg-neutral-200 cursor-pointer   items-center transition-all duration-300 ease-in-out
+    @apply  flex w-fit  xl:text-2xl px-[5px] py-[2px] md:py-3 lg:text-[20px] text-nowrap text-[.40rem] md:text-base flex-row-reverse  text-neutral-400 rounded-sm md:rounded-md  hover:text-black hover:bg-neutral-200 cursor-pointer   items-center transition-all duration-300 ease-in-out
   }
   .btn{
-    @apply  bg-divar  md:w-fit md:text-xs text-[0.50rem] lg:text-lg  px-[2px] md:py-2 text-center xl:px-4 py-[6px] rounded-md text-white
+    @apply  bg-divar text-nowrap  md:w-fit md:text-xs text-[0.30rem] lg:text-lg  px-[1px] md:py-2 text-center xl:px-4 py-[4px] rounded-sm md:rounded-md text-white
   }
   .input{
-    @apply transition-all bg-transparent px-1  duration-500 ease-in-out focus:border-divar focus:border-4 border-2 border-solid  border-neutral-200 rounded-md 
+    @apply transition-all bg-transparent px-1   duration-500 ease-in-out focus:border-divar focus:border-[1px] border-2 focus:border-solid  border-neutral-200 rounded-md 
   }
   .menu{
-    @apply h-fit transition-transform duration-300 ease-in-out w-[205px] hidden -translate-y-10 rounded-md pb-1 opacity-0  bg-white  aria-disabled:flex aria-disabled:opacity-100  aria-disabled:translate-y-[10px] flex-col items-start   drop-shadow-2xl shadow-black  absolute
+    @apply h-fit transition-transform duration-300 ease-in-out md:w-[205px] w-36 hidden -translate-y-10 rounded-md pb-1 opacity-0  bg-white  aria-disabled:flex aria-disabled:opacity-100  aria-disabled:translate-y-[10px] flex-col items-start   drop-shadow-2xl shadow-black  absolute
   }
   .li{
     @apply  w-full transition-all  px-1 duration-300  ease-in-out pb-3 rounded-md flex  cursor-pointer hover:bg-neutral-100 pt-2 border-solid border-b-[1px]  border-neutral-300
   }
   .text-menu{
-    @apply text-xs md:text-sm lg:text-base xl:text-lg transition-all duration-300 ease-in-out mb-1 flex group-hover:text-neutral-800  text-neutral-500 font-extralight
+    @apply text-[0.60rem] md:text-sm lg:text-base xl:text-lg transition-all duration-300 ease-in-out mb-1 flex group-hover:text-neutral-800  text-neutral-500 font-extralight
   }
 }
 
@@ -69,3 +69,4 @@ input:focus{
 ::-webkit-scrollbar {
   display: none;
 }
+textarea, input { outline: none; }

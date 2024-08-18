@@ -41,7 +41,7 @@ function Mainpage() {
        
   },[category])
   return (
-    <div className="w-full px-5 h-full grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4">
+    <div className="w-full px-1 md:pt-3 md:px-2 h-full grid grid-cols-3 xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-6">
       {isLoading||Loading ?<Loader/>:
       <>
       <Sibebar setcategory={setcategory}  category={categorys?.data}/>

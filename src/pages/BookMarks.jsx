@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { sp } from '../utils/number'
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { IoShareSocialOutline } from "react-icons/io5";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import { deletemarks } from '../features/post/savedSlice';
 
 function BookMarks() {
@@ -11,16 +11,16 @@ function BookMarks() {
   const dispatch=useDispatch()
 console.log(posts.posts)
   return (
-    <div className='px-5 flex flex-row flex-wrap'>
+    <div className='px-5 gap-y-2 md:gap-x-2 md:pt-5 flex flex-row flex-wrap'>
      {posts.posts.map((post)=>(
-      <div className='border-neutral-200 rounded-md lg:w-[450px]  px-2 py-3 border-2 w-[350px] grid gap-y-4 gap-x-2 grid-cols-2 grid-rows-5' >
+      <div className='border-neutral-200 rounded-md lg:w-[450px]  px-2 py-3 border-2 w-60 md:w-[350px] grid gap-y-4 gap-x-2 grid-cols-2 grid-rows-5' >
           <div className='row-span-4 flex flex-col justify-between'>
-          <h3 className='text-lg lg:text-xl xl:text-2xl'>
+          <h3 className='text-base lg:text-xl xl:text-2xl'>
          {post.options.title}
          </h3>
          <div>
-          <p className='text-neutral-400 lg:text-lg xl:text-xl text-base font-extralight'>{sp(post.amount)}  تومان</p>
-          <p className='text-neutral-400 text- '>درتاریخ{new Date(post.createdAt).toLocaleTimeString("fa-IR")}</p>
+          <p className='text-neutral-400 lg:text-lg xl:text-xl md:text-base text-xs font-extralight'>{sp(post.amount)}  تومان</p>
+          <p className='text-neutral-400 text-xs md:text-base '>درتاریخ{new Date(post.createdAt).toLocaleTimeString("fa-IR")}</p>
          </div>
          </div>
            {post.images.length?
@@ -29,9 +29,9 @@ console.log(posts.posts)
               <h3>این اگهی عکس ندارد</h3>
             </div>
            }
-           <div className='w-full  h-fit gap-x-2 col-span-full grid grid-cols-2'>
-            <button className='transition-all py-[2px] lg:text-lg xl:text-xl w-full duration-300 ease-in-out text-neutral-400 hover:text-neutral-800 rounded-md  border-neutral-800 border-[1px] hover:bg-neutral-50'>اشتراک گذاری<ShareOutlinedIcon style={{fontSize:"1.3rem"}}/></button>
-            <button onClick={()=>dispatch(deletemarks(post._id))} className='transition-all lg:text-lg xl:text-xl py-[2px] w-full duration-300 ease-in-out text-neutral-400 hover:text-neutral-800 rounded-md  border-neutral-800 border-[1px] hover:bg-neutral-50'>حذف نشان <DeleteOutlineOutlinedIcon style={{fontSize:"1.3rem"}} /></button>
+           <div className='w-full  h-fit gap-x-1 md:gap-x-2 col-span-full grid grid-cols-2'>
+            <button className='transition-all flex flex-row justify-center py-[1px] md:py-[2px] lg:text-lg xl:text-xl md:text-base text-xs w-full duration-300 ease-in-out text-neutral-400 hover:text-neutral-800 rounded-md  border-neutral-800 border-[1px] hover:bg-neutral-50'>اشتراک گذاری<IoShareSocialOutline className='md:text-xl lg:text-2xl xl:text-3xl text-lg' /></button>
+            <button onClick={()=>dispatch(deletemarks(post._id))} className='transition-all flex flex-row justify-center lg:text-lg xl:text-xl md:text-base text-sm py-[1px] md:py-[2px] w-full duration-300 ease-in-out text-neutral-400 hover:text-neutral-800 rounded-md  border-neutral-800 border-[1px] hover:bg-neutral-50'>حذف نشان <MdOutlineDeleteOutline className='md:text-xl lg:text-2xl xl:text-3xl text-lg' /></button>
            </div>
       </div>
      ))}

@@ -34,14 +34,14 @@ function CreateCategory() {
 
   return (
     <form className='flex flex-col items-start  ' onChange={formHandeler} onSubmit={submitHandeler} >
-        <h3 className='w-fit lg:text-2xl border-solid border-b-4 mb-7 text-lg font-semibold border-divar'>ایجاد دسته بندی جدید</h3>
+        <h3 className='w-fit lg:text-2xl md:text-lg border-solid border-b-4 mb-7 text-sm font-semibold border-divar'>ایجاد دسته بندی جدید</h3>
         <Toaster position='top-center '/>
-        <label className='font-medium lg:text-xl' htmlFor="name">اسم دسته بندی</label>
-        <input className= 'input mb-5 lg:min-w-96 min-h-8 min-w-64 ' type="text" name='name' />
-        <label className='font-medium lg:text-xl' htmlFor="slog">اسلاگ</label>
-        <input className='input mb-5 lg:min-w-96 min-h-8 min-w-64' type="text" name='slog' />
-        <label className='font-medium lg:text-xl' htmlFor="icon">آیکون</label>
-        <input className='input mb-5 lg:min-w-96 min-h-8 min-w-64' type="text" name='icon' />
+        <label className='font-medium text-sm md:text-lg lg:text-xl' htmlFor="name">اسم دسته بندی</label>
+        <input className= 'input mb-5  lg:min-w-96  h-3 md:h-8  min-w-64 ' type="text" name='name' />
+        <label className='font-medium text-sm md:text-lg lg:text-xl' htmlFor="slog">اسلاگ</label>
+        <input className='input mb-5 lg:min-w-96  h-6 md:h-8  min-w-64' type="text" name='slog' />
+        <label className='font-medium text-sm md:text-lg lg:text-xl' htmlFor="icon">آیکون</label>
+        <input className='input mb-5 lg:min-w-96  h-6 md:h-8 min-w-64' type="text" name='icon' />
         <button className='btn text-base lg:text-lg px-3 py-1 disabled:opacity-50' disabled={isLoading} type='submit'>ایجاد</button>
     </form>
   )
