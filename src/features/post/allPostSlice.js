@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { filterbyCategory, FilterbySearch } from "../Filter/filterSlice";
 
+
 const initialState={
     posts:[],
     allpost:[]
@@ -11,12 +12,19 @@ const allpostSlice=createSlice({
     initialState,
     extraReducers:(builder)=>{
         builder.addCase(filterbyCategory,(state,action)=>{
-            console.log(action.payload)
+            
             const category=action.payload.category._id
-
+            
          const newpost=state.allpost.filter((p)=>p.category==category)
-           console.log(newpost)
           state.posts=newpost
+          
+        
+        }),
+        builder.addCase(FilterbySearch,(state,action)=>{
+           console.log(state.allpost)
+           const x=state.posts.filter((i)=>i.options.title.includes(action.payload))  
+         console.log(x)
+     
         })
        
     },
@@ -26,6 +34,7 @@ const allpostSlice=createSlice({
         getpost:(state,action)=>{
            state.allpost=action.payload.filter((i)=>i.options)
            state.posts=state.allpost
+           console.log(state.posts[0].options.title)
         }
     }
 })

@@ -1,21 +1,28 @@
+
 import { createSlice } from "@reduxjs/toolkit";
+
 
 
 
 
 const filterSlice=createSlice({
     name:"filterCategory",
-    initialState:{},
+    initialState:{category:[],search:""},
     reducers:{
        FilterbySearch:(state,action)=>{
-       
-
+        
+           state.search=action.payload
+           
        },
 
     filterbyCategory:(state,action)=>{
-        console.log(action)
-    }  
-    }
+    
+    
+      state.category=[action.payload.category]
+      
+    },
+      
+  }
     })
 
 export default filterSlice.reducer

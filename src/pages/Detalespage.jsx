@@ -74,7 +74,7 @@ function Detalespage() {
       {showAuth&&<Authpage setShowAuth={setShowAuth}/>}
       <div className='flex flex-col' >
         <Toaster/>
-        <h1 className='md:text-2xl text-lg mt-2 md:mt-0 lg:text-3xl xl:text-4xl '>{post?.post.options.title}</h1>
+        <h1 className='md:text-2xl text-lg mt-2 md:mt-0 lg:text-3xl xl:text-4xl '>{post.post.options.title}</h1>
         <p className='font-extralight text-xs md:text-base lg:text-lg border-neutral-300 border-solid border-b-2 pb-5 text-neutral-500 mt-3 w-full '>درتاریخ{new Date(post?.post.createdAt).toLocaleDateString("fa-IR")}در {post.post.options.city} </p>
         <p className='cursor-pointer w-full flex flex-row justify-between py-2 md:py-4 border-solid border-b-2 border-neutral-300'> <span className='flex flex-row-reverse gap-x-2 font-extralight lg:text-lg xl:text-xl text-xs'>زنگ های خطر قبل از معامله<MdReportProblem className='text-lg text-neutral-500' /></span> <i ><IoIosArrowBack className='text-neutral-400' /></i></p>
         <div className='mt-4  flex justify-between items-center '>

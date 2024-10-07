@@ -8,13 +8,14 @@ import { sp } from '../utils/number'
 function Mypost() {
 
   const {data,isLoading,error}=useQuery({queryKey:["myposts"],queryFn:myPosts})
-  console.log(data)
+
 
   return (
-    <div className='pt-2 md:pt-4 md:flex md:justify-center md:flex-wrap p-x-0 w-full h-full container mx-auto'> 
-  
+    <>
+    <header className='fixed bg-neutral-100 md:hidden w-full py-3 top-0 z-50'>آگهی های من</header>
+    <div className='z-10 md:mb-0 mb-16 md:pt-4 md:flex md:justify-center md:flex-wrap p-x-0 w-full h-full container mx-auto'> 
       {data?.data.posts.map(post=>(
-     <div className='flex flex-row py-4 w-full  md:w-[800px] border-b-[1px]  border-solid border-neutral-300'>
+     <div key={post._id } className='flex flex-row py-4 w-full  md:w-[800px] border-b-[1px]  border-solid border-neutral-300'>
 
       <div className='flex flex-row-reverse md:flex-row justify-between md:justify-normal w-full px-2 gap-x-2 md:gap-x-5'  >
         <div className='relative'>
@@ -38,6 +39,7 @@ function Mypost() {
       ))}
      
     </div>
+    </>
   )
 }
 

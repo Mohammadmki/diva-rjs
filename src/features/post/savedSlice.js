@@ -9,9 +9,10 @@ const savedSlice=createSlice({
     initialState,
     reducers:{
      savedpost:(state,action)=>{
-
-        state.posts=[...state.posts,(action.payload)]
+       
+        state.posts=[...state.posts,action.payload]
         toast.success("اگهی نشان شد")
+       console.log(state.posts)
      },
      deletemarks:(state,action)=>{
      

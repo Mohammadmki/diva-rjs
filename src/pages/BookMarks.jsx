@@ -9,11 +9,13 @@ function BookMarks() {
 
   const posts=useSelector((store)=>store.saved)
   const dispatch=useDispatch()
-console.log(posts.posts)
+console.log(posts)
   return (
-    <div className='px-5 gap-y-2 md:gap-x-2 md:pt-5 flex flex-row flex-wrap'>
+  <>
+ <header className='fixed z-50 md:hidden bg-neutral-100 w-full py-3 top-0'>نشان ها</header>
+   <div className='px-5 z-10 gap-y-2 md:gap-x-2 md:pt-5 flex flex-row flex-wrap'> 
      {posts.posts.map((post)=>(
-      <div className='border-neutral-200 rounded-md lg:w-[450px]  px-2 py-3 border-2 w-60 md:w-[350px] grid gap-y-4 gap-x-2 grid-cols-2 grid-rows-5' >
+      <div className='border-neutral-200  rounded-md lg:w-[450px]  px-2 py-3 border-2 w-60 md:w-[300px] grid gap-y-4 gap-x-2 grid-cols-2 grid-rows-5' >
           <div className='row-span-4 flex flex-col justify-between'>
           <h3 className='text-base lg:text-xl xl:text-2xl'>
          {post.options.title}
@@ -36,6 +38,7 @@ console.log(posts.posts)
       </div>
      ))}
     </div>
+    </>
   )
 }
 

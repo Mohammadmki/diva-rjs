@@ -40,11 +40,9 @@ const navigate=useNavigate()
   }
 
   return (
-    <div className='relative flex w-[290px] md:w-[420px] px-3 container mx-auto my-5 flex-col'>
+    <div className='relative md:mt-6 mt-12 flex w-[290px] md:w-[420px] px-3 container mx-auto my-5 flex-col'>
       <Toaster/>
-      <h2 className='md:text-xl text-base font-light mb-12' >ثبت اگهی</h2>
-     
-     
+      <h2 className='md:text-xl text-base font-light mb-8 md:mb-12' >ثبت اگهی</h2>
       <button onClick={()=>setStep(1)} className='btn md:px-3 px-1 text-xs md:text-base self-end absolute top-0 '>تغییر دسته بندی</button>
       
       <form onSubmit={submitHandler} onChange={changeHandler} className=' flex flex-col'>
