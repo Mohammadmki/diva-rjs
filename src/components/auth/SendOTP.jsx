@@ -35,7 +35,10 @@ function SendOTP({mobile,setMobile,setstep,setShowAuth}) {
       <p className='hidden' >لطفاً شماره موبایل معتبر وادر کنید</p>
       <p className='mt-2 md:text-base text-sm'>شرایط استفاده از خدمات و حریم خصوصی دیوار را می‌پذیرم</p>
       </div>
+      <div className='flex flex-row-reverse justify-between ' >
       <button className='bg-divar cursor-pointer text-white w-20 md:w-24 text-base md:text-xl self-end md:h-9 h-7 md:py-1 rounded-md' type='submit' >تایید</button>
+      <p className='text-xs md:text-base' >شماره اکانت ادمین <span className='text-divar w-fit' >09189990099</span></p>
+      </div>
       </form>
     
    

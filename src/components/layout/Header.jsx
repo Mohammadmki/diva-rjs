@@ -155,7 +155,7 @@ const dispatch=useDispatch()
         </p>
        </li>
       <li>
-      <button onClick={()=>{user?navigate("/new"):setShowAuth(true)}} className='btn md:inline-block hidden'>
+      <button onClick={()=>{user?navigate("/new"):setShowAuth(true)}} className='btn  md:inline-block hidden'>
         ثبت اگهی
       </button>
       </li>

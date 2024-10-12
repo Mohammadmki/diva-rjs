@@ -25,8 +25,8 @@ const{refetch}=useQuery({queryKey:["getprofile"],queryFn:profile})
     const {res}= await checkOtp(mobile,code)
     if(res){
       setcookie(res.data)
-      navigate("/")
       setShow(false)
+      navigate("/")
       refetch()
     }
   }
@@ -42,8 +42,11 @@ const{refetch}=useQuery({queryKey:["getprofile"],queryFn:profile})
       <p className='text-red-600 text-sm mt-2 font-light hidden'>کد تایید معتبر نیست</p>
       <p onClick={()=>setstep(1)} className='transition-all duration-500 ease-in-out bg-neutral-200 text-neutral-400 w-fit rounded-full text-sm px-3 py-1 self-end cursor-pointer mt-2 hover:bg-neutral-300 hover:text-neutral-500'>تغییر شماره موبایل </p>
       <hr className='mt-7 mb-2'></hr>
+      <div className='flex flex-row-reverse justify-between' >
       <button className='bg-divar cursor-pointer  text-white flex items-center justify-center w-16 md:w-24 text-base md:text-xl self-end h-7 md:h-9 py-1 rounded-md' type='submit' >ورود</button>
-
+      <p className=' text-xs md:text-base' >کد تایید شما: <span className='text-divar' >12345</span></p>
+      </div>
+     
     </form>
   )
 }
