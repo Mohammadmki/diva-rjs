@@ -69,7 +69,7 @@ const dispatch=useDispatch()
       <ul aria-disabled={showsearch} className='transition-all duration-200 ease-in-out flex aria-disabled:bg-transparent aria-disabled:border-none w-full md:bg-transparent md:py-0 py-1 md:border-none border-solid border-neutral-300 border-2 bg-white items-end md:items-center justify-around'>
         <li className='md:inline-block hidden'>
         <Link to={"/"}>
-        <img src="../../../public/divar.svg" className=' lg:w-16 md:w-14 w-8 cursor-pointer border-neutral-300 border-l-2 border-solid pl-3' alt="" />
+        <img src="/divar.svg" className=' lg:w-16 md:w-14 w-8 cursor-pointer border-neutral-300 border-l-2 border-solid pl-3' alt="" />
         </Link>
         </li>
           
