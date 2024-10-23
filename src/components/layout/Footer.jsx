@@ -16,7 +16,7 @@ function Footer() {
     <ul className='flex flex-row justify-between items-center'>
         <li >
             <NavLink to={"/"} className='text-footer'>
-                <img src="../../../public/divar.svg"  />
+                <img src="/divar.svg"  />
             اگهی ها
             </NavLink>
             </li>
