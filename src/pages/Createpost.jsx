@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 
 
 function CreatePosts() {
-  const [post,setPost]=useState({category:"",city:"",amount:null,images:null,content:"",title:""})
+  const [post,setPost]=useState({category:"",city:"",amount:'',images:null,content:"",title:""})
   const [step,setStep]=useState(1)
 const navigate=useNavigate()
 

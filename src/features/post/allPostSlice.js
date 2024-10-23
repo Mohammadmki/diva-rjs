@@ -23,7 +23,6 @@ const allpostSlice=createSlice({
         builder.addCase(FilterbySearch,(state,action)=>{
            console.log(state.allpost)
            const x=state.posts.filter((i)=>i.options.title.includes(action.payload))  
-         console.log(x)
      
         })
        
@@ -34,7 +33,6 @@ const allpostSlice=createSlice({
         getpost:(state,action)=>{
            state.allpost=action.payload.filter((i)=>i.options)
            state.posts=state.allpost
-           console.log(state.posts[0].options.title)
         }
     }
 })

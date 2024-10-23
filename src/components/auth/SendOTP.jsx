@@ -7,6 +7,7 @@ function SendOTP({mobile,setMobile,setstep,setShowAuth}) {
   const input=useRef(null)
   const [show,setShow]=useState(true)
   const navigate=useNavigate()
+ const [Loading,setLoading]=useState(false)
 
   const submitHandeler= async (e)=>{
    e.preventDefault()
@@ -14,11 +15,10 @@ function SendOTP({mobile,setMobile,setstep,setShowAuth}) {
   input.current.nextSibling.className="text-red-600 text-xs md:text-sm block"
    input.current.className=' border-solid pr-3 h-9 rounded-md w-full border-red-600 border-2 placeholder:text-neutral-400 '
    return
-   
    }
+   setLoading(true)
    const{res,error}= await sentOtp(mobile)
-   console.log({res,error})
-  
+    setLoading(false)
     if(res)setstep(2)
   }
   return (
@@ -36,7 +36,7 @@ function SendOTP({mobile,setMobile,setstep,setShowAuth}) {
       <p className='mt-2 md:text-base text-sm'>شرایط استفاده از خدمات و حریم خصوصی دیوار را می‌پذیرم</p>
       </div>
       <div className='flex flex-row-reverse justify-between ' >
-      <button className='bg-divar cursor-pointer text-white w-20 md:w-24 text-base md:text-xl self-end md:h-9 h-7 md:py-1 rounded-md' type='submit' >تایید</button>
+      <button className='bg-divar cursor-pointer text-white w-20 md:w-24 disabled:opacity-50 text-base md:text-xl self-end md:h-9 h-7 md:py-1 rounded-md' disabled={Loading} type='submit' >تایید</button>
       <p className='text-xs md:text-base' >شماره اکانت ادمین <span className='text-divar w-fit' >09189990099</span></p>
       </div>
       </form>
